@@ -17,10 +17,6 @@ class Scene {
     document.body.appendChild(this.canvas);
   }
 
-  getCenter() {
-    return [this.canvas.width / 2, this.canvas.height / 2]
-  }
-
   drawImage(x, y, height, width, src, rotation=0) {
     this.gameobjects[this.gameobjects.length] = 
       new Gameobject(x, y, height, width, src, rotation, this);

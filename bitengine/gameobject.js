@@ -1,3 +1,15 @@
+var AnchorEnum = {
+  TOP_LEFT: [0,0],
+  TOP_CENTER: [0,1],
+  TOP_RIGHT: [0,2],
+  MIDDLE_LEFT: [1,0],
+  MIDDLE_CENTER: [1,1],
+  MIDDLE_RIGHTL: [1,2],
+  BOTTOM_LEFT: [2,0],
+  BOTTOM_CENTER: [2,1],
+  BOTTOM_RIGHT: [2,2],
+};
+
 class Gameobject {
   constructor(name, src, scene, options) {
     this.name = name;
@@ -11,6 +23,7 @@ class Gameobject {
       width: null,
       height: null,
       rotation: 0,
+      anchorPoint: AnchorEnum.MIDDLE_CENTER,
     }
     Object.assign(this.options, options);
     this.image.onload = this.loadimage.bind(this);
@@ -25,8 +38,8 @@ class Gameobject {
       this.scene.ctx.rotate(this.options['rotation'] * Math.PI / 180);
       this.scene.ctx.drawImage(
         this.image,
-        this.options['x'] - this.width() / 2,
-        this.options['y'] - this.height() / 2,
+        this.options['x'] - (this.width() / 2) * this.options.anchorPoint[0],
+        this.options['y'] - (this.height() / 2) * this.options.anchorPoint[1],
         this.width(),
         this.height());
       this.scene.ctx.restore();
