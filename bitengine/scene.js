@@ -25,4 +25,10 @@ class Scene {
     this.gameobjects[this.gameobjects.length] = 
       new Gameobject(x, y, height, width, src, rotation, this);
   }
+
+  findGameobject(name) {
+    return this.gameobjects.find(function(gameobject) {
+      return gameobject;
+    });
+  }
 }

@@ -1,12 +1,3 @@
-Object.extend = function(destination, source) {
-    for (var property in source) {
-        if (source.hasOwnProperty(property)) {
-            destination[property] = source[property];
-        }
-    }
-    return destination;
-};
-
 class Gameobject {
   constructor(name, src, scene, options) {
     this.name = name;
