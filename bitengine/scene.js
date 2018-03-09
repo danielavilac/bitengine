@@ -13,6 +13,16 @@ class Scene {
     }
   }
 
+  render() {
+    this.gameobjects.forEach(function(gameobject) {
+      gameobject.render();
+    });
+  }
+
+  clean() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
   generateCanvas() {
     document.body.appendChild(this.canvas);
   }

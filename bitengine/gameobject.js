@@ -23,18 +23,18 @@ class Gameobject {
       width: null,
       height: null,
       rotation: 0,
+      speed: 0,
       anchorPoint: AnchorEnum.MIDDLE_CENTER,
     }
     Object.assign(this.options, options);
-    this.image.onload = this.loadimage.bind(this);
+    this.image.onload = this.render.bind(this);
   }
 
-  loadimage() {
+  render() {
       this.scene.ctx.save();
       this.scene.ctx.translate(
         this.scene.canvas.width * this.options['x'],
         this.scene.canvas.height * this.options['y']);
-      console.log(this.options['rotation']);
       this.scene.ctx.rotate(this.options['rotation'] * Math.PI / 180);
       this.scene.ctx.drawImage(
         this.image,
@@ -43,6 +43,22 @@ class Gameobject {
         this.width(),
         this.height());
       this.scene.ctx.restore();
+  }
+
+  set(options) {
+    Object.assign(this.options, options);
+  }
+
+  speed() {
+    return this.options["speed"];
+  }
+
+  x() {
+    return this.options["x"];
+  }
+
+  y() {
+    return this.options["y"];
   }
 
   width() {
