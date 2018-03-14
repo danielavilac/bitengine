@@ -33,13 +33,13 @@ class Gameobject {
   render() {
       this.scene.ctx.save();
       this.scene.ctx.translate(
-        this.scene.canvas.width * this.options['x'],
-        this.scene.canvas.height * this.options['y']);
-      this.scene.ctx.rotate(this.options['rotation'] * Math.PI / 180);
+        this.scene.canvas.width * this.options.x,
+        this.scene.canvas.height * this.options.y);
+      this.scene.ctx.rotate(this.options.rotation * Math.PI / 180);
       this.scene.ctx.drawImage(
         this.image,
-        this.options['x'] - (this.width() / 2) * this.options.anchorPoint[0],
-        this.options['y'] - (this.height() / 2) * this.options.anchorPoint[1],
+        this.options.x - (this.width() / 2) * this.options.anchorPoint[0],
+        this.options.y - (this.height() / 2) * this.options.anchorPoint[1],
         this.width(),
         this.height());
       this.scene.ctx.restore();
@@ -50,22 +50,22 @@ class Gameobject {
   }
 
   speed() {
-    return this.options["speed"];
+    return this.options.speed;
   }
 
   x() {
-    return this.options["x"];
+    return this.options.x;
   }
 
   y() {
-    return this.options["y"];
+    return this.options.y;
   }
 
   width() {
-    return this.options['width'] || this.image.width;
+    return this.options.width || this.image.width;
   }
 
   height() {
-    return this.options['height'] || this.image.height;
+    return this.options.height || this.image.height;
   }
 }
