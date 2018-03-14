@@ -29,6 +29,11 @@ class Scene {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
+  print() {
+    this.clean();
+    this.render();
+  }
+
   drawImage(x, y, height, width, src, rotation=0) {
     if (!this._initialized) return
     this.gameobjects[this.gameobjects.length] = 

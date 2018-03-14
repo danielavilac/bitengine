@@ -1,43 +1,31 @@
 var s = new Scene();
-var then = Date.now();
-var w = window;
+var loop = new Thread();
 var assets = {
   "character": "http://www.starbucks.com.pe/media/fresa-frappuccino-blended_tcm92-18638_w1024_n.png",
 }
-requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
 
 document.addEventListener('DOMContentLoaded', function() {
   s.init('game');
-  s.drawImage('starbucks', assets['character'], s,
+  s.drawImage('starbucks', assets.character, s,
     { x: .5, y: .5, anchorPoint: AnchorEnum.MIDDLE_CENTER, speed: .5 });
   Input.init();
-  main();
+  loop.start();
 });
 
-function main () {
-  var now = Date.now();
-  var deltaTime = now - then;
-  update(deltaTime / 1000);
-  render();
-  then = now;
-  requestAnimationFrame(main);
-}
+loop.render = function() {
+  s.print();
+};
 
-function update(deltaTime) {
+loop.update = function() {
   sb = s.findGameobject('starbucks');
   if (Input.isPressed(Key.UP)) {
-    sb.set({ y: sb.y() - sb.speed() * deltaTime });
+    sb.set({ y: sb.y() - sb.speed() * this.stats.delta_time });
   } else if (Input.isPressed(Key.DOWN)) {
-    sb.set({ y: sb.y() + sb.speed() * deltaTime });
+    sb.set({ y: sb.y() + sb.speed() * this.stats.delta_time });
   }
   if (Input.isPressed(Key.RIGHT)) {
-    sb.set({ x: sb.x() + sb.speed() * deltaTime });
+    sb.set({ x: sb.x() + sb.speed() * this.stats.delta_time });
   } else if (Input.isPressed(Key.LEFT)) {
-    sb.set({ x: sb.x() - sb.speed() * deltaTime });
+    sb.set({ x: sb.x() - sb.speed() * this.stats.delta_time });
   }
-}
-
-function render() {
-  s.clean();
-  s.render();
-}
+};
