@@ -28,7 +28,8 @@ function update(deltaTime) {
     sb.set({ y: sb.y() - sb.speed() * deltaTime });
   } else if (Input.isPressed(Key.DOWN)) {
     sb.set({ y: sb.y() + sb.speed() * deltaTime });
-  } else if (Input.isPressed(Key.RIGHT)) {
+  }
+  if (Input.isPressed(Key.RIGHT)) {
     sb.set({ x: sb.x() + sb.speed() * deltaTime });
   } else if (Input.isPressed(Key.LEFT)) {
     sb.set({ x: sb.x() - sb.speed() * deltaTime });
