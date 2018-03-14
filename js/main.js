@@ -1,13 +1,14 @@
 var s = new Scene();
 var then = Date.now();
 var w = window;
+var assets = {
+  "character": "http://www.starbucks.com.pe/media/fresa-frappuccino-blended_tcm92-18638_w1024_n.png",
+}
 requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
 
 document.addEventListener('DOMContentLoaded', function() {
-  s.generateCanvas();
-  
-  var url = "http://www.starbucks.com.pe/media/fresa-frappuccino-blended_tcm92-18638_w1024_n.png";
-  s.drawImage('starbucks', url, s,
+  s.init('game');
+  s.drawImage('starbucks', assets['character'], s,
     { x: .5, y: .5, anchorPoint: AnchorEnum.MIDDLE_CENTER, speed: .5 });
   Input.init();
   main();
